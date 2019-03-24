@@ -1,0 +1,82 @@
+---
+title: "data 605 WK8 Assignment"
+author: "Jun Pan"
+date: "March 21, 2019"
+output: html_document
+---
+
+#11 and #14 on page 303 of probability text 
+#1 on page 320-321 
+
+11 A company buys 100 lightbulbs, each of which has an exponential lifetime of 1000 hours. What is the expected time for the first of these bulbs to burn out? (Page 303). 
+
+
+$mu = 1000$  (the expected lifetime of a bulb is 1000 hours)
+$n = 100$
+so the expected time for the first of the bulbs to burn out is $E(M)=\mu/n=1000/100=10$.
+
+Therefore, the expected time for the first of these bulbs to burn out is 10 hours.
+
+
+
+
+
+14 Assume that X1 and X2 are independent random variables, each having an exponential density with parameter ??. Show that Z = X1 ??? X2 has density fZ(z) = (1/2)??e?????|z| (Page 303). 
+
+Because $f_Z(z) = (1/2)e^{-\lambda|z|}$, so it can be re-written as $f_Z(z) = \begin{cases} (1/2)e^{-\lambda z}, & \mbox{if } z \ge 0, \\ (1/2)e^{\lambda z}, & \mbox{if }z <0. \end{cases}$
+
+Because $X_1$ and $X_2$ have exponential density, their PDF is
+
+<CENTER>
+$f_{X_1}(x)=f_{X_2}(x)=\begin{cases} \lambda e^{-\lambda x}, & \mbox{if } x\ge 0, \\ 0, & \mbox{otherwise. }\end{cases}$
+</CENTER>
+
+$$
+\begin{split}
+  f_Z(z) &= f_{X_1+(-X_2)}(z) \\
+    &= \int_{-\infty}^{\infty} f_{-X_2}(z-x_1) f_{X_1}(x_1) dx_1 \\
+    &= \int_{-\infty}^{\infty} f_{X_2}(x_1-z) f_{X_1}(x_1) dx_1 \\
+    &= \int_{-\infty}^{\infty} \lambda e^{-\lambda(x_1-z)} \lambda e^{-\lambda x_1} dx_1 \\
+    &= \int_{-\infty}^{\infty} \lambda^2 e^{-\lambda x_1 + \lambda z} e^{-\lambda x_1} dx_1 \\
+    &= \int_{-\infty}^{\infty} \lambda^2 e^{\lambda z - \lambda x_1 - \lambda x_1} dx_1 \\
+    &= \int_{-\infty}^{\infty} \lambda^2 e^{\lambda(z-2x_1)} dx_1
+\end{split}
+$$
+
+Because $z=x_1-x_2$, we write the formula to  $x_2=x_1-z$.
+
+
+If $z \ge 0$, then $x_2=(x_1-z) \ge 0$, and $x_1 \ge z$, and, using WolframAlpha, $f_Z(z) = \int_{z}^{\infty} \lambda^2 e^{\lambda(z-2x_1)} dx_1 = \frac{1}{2} \lambda e^{-\lambda z}$. 
+
+
+If $z < 0$, then $x_2=(x_1-z) \ge 0$, and $x_1 \ge 0$, and $f_Z(z) = \int_{0}^{\infty} \lambda^2 e^{\lambda(z-2x_1)} dx_1 =\frac{1}{2} \lambda e^{\lambda z}$.
+
+Combining two sides, we get $f_Z(z) = \begin{cases} (1/2)e^{-\lambda z}, & \mbox{if } z \ge 0, \\ (1/2)e^{\lambda z}, & \mbox{if }z <0. \end{cases}$
+
+
+
+1 Let X be a continuous random variable with mean µ = 10 and variance ?? 2 = 100/3. Using Chebyshev's Inequality, find an upper bound for the following probabilities.
+(a) P(|X ??? 10| ??? 2). 
+(b) P(|X ??? 10| ??? 5). 
+(c) P(|X ??? 10| ??? 9). 
+(d) P(|X ??? 10| ??? 20).
+(Page 320). 
+
+
+(Chebyshev Inequality) Let X be a continuous random variable
+
+with density function $f(x)$. Suppose X has a finite expected value $\mu = E(X)$ and
+
+finite variance $\sigma^2 = V(X)$. Then for any positive number $\epsilon > 0$ we have
+
+$P(|X - \mu| \geq \epsilon) \leq \sigma^2/\epsilon^2$
+
+a) $\epsilon = 2$ and the upper bound is $\sigma^2/\epsilon^2 = (100/3)/4 = 25/3$
+
+b) $\epsilon = 5$ and the upper bound is $\sigma^2/\epsilon^2 = (100/3)/25 = 4/3$
+
+For a) and b), the upper bound cannot be greater than 1,  therefore the upper bounds are 1 for both a) and b).
+
+c) $\epsilon = 9$ and the upper bound is $\sigma^2/\epsilon^2 = (100/3)/81 = 100/243$
+
+d) $\epsilon = 20$ and the upper bound is $\sigma^2/\epsilon^2 = (100/3)/400 = 1/12$
